@@ -1,5 +1,5 @@
-#include "../include/stack_tests.h"
-#include "../../DataStructures/include/stack_adt.h"
+#include "../include/StackTests.h"
+#include "../../DataStructures/include/StackADT.h"
 #include "../UnityUnitTests/src/unity.h"
 #include <stdlib.h>
 #include <stdio.h>

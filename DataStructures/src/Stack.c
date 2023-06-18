@@ -1,4 +1,4 @@
-#include "../include/stack_adt.h"
+#include "../include/StackADT.h"
 #include <stdlib.h>
 
 Stack* stack_init(void (*free_function)(void *)) {

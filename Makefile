@@ -1,11 +1,11 @@
 UNITY_DIR=./tests/UnityUnitTests/src/unity.c
-ALL_TESTS_DIR=./tests/tests.c
+ALL_TESTS_DIR=./tests/Tests.c
 TEST_DIR=./tests/src/
 DS_DIR=./DataStructures/src/
 
 test_stack:
-		gcc -o test_stack ${UNITY_DIR} ${ALL_TESTS_DIR} ${TEST_DIR}stack_tests.c ${DS_DIR}stack.c
-		./test_stack
+		gcc -o TestStack ${UNITY_DIR} ${ALL_TESTS_DIR} ${TEST_DIR}StackTests.c ${DS_DIR}Stack.c
+		./TestStack
 
 clean:
-		rm test_stack
+		rm TestStack
