@@ -58,6 +58,6 @@ void stack_clear(Stack* stack_pointer) {
 
 void stack_destroy(Stack* stack_pointer) {
     stack_clear(stack_pointer);
-    free(((Stack* ) stack_pointer)->memory);
+    free(stack_pointer->memory);
     free(stack_pointer);
 }

@@ -1,5 +1,3 @@
-#ifndef C_STACK
-#define C_STACK
 
 struct Stack
 {
@@ -38,4 +36,3 @@ short stack_contain(Stack* stack_pointer, void* item, int (*compare_function)(co
 
 void stack_destroy(Stack* stack_pointer);
 
-#endif
