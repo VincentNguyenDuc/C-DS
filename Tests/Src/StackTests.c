@@ -1,7 +1,7 @@
-#include "../include/StackTests.h"
-#include "../../lib/DataStructures/include/StackADT.h"
-#include "../UnityUnitTests/src/unity.h"
-#include "../utils/Utils.h"
+#include "../Include/StackTests.h"
+#include "../../Src/DataStructures/Include/StackADT.h"
+#include "../../Lib/UnityTest/unity.h"
+#include "../../Lib/Utils/Utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 

@@ -14,12 +14,12 @@ else
 endif
 
 # TESTS DIRECTORIES
-UNITY_DIR=./tests/UnityUnitTests/src/unity.c
-UTILS_DIR=./tests/utils/Utils.c
-TEST_DIR=./tests/src
+UNITY_DIR=./Lib/UnityTest/unity.c
+UTILS_DIR=./Lib/Utils/Utils.c
+TEST_DIR=./Tests/Src
 
 # DATA STRUCTURES DIRECTORIES
-DS_DIR=./lib/DataStructures/src
+DS_DIR=./Src/DataStructures/Src
 
 # DEFAULT DIRECTORIES
 DEFAULT=${UNITY_DIR} ${UTILS_DIR}

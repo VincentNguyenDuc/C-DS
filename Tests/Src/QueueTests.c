@@ -1,7 +1,7 @@
-#include "../include/QueueTests.h"
-#include "../../DataStructures/include/QueueADT.h"
-#include "../UnityUnitTests/src/unity.h"
-#include "../utils/Utils.h"
+#include "../Include/QueueTests.h"
+#include "../../Src/DataStructures/Include/QueueADT.h"
+#include "../../Lib/UnityTest/unity.h"
+#include "../../Lib/Utils/Utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 

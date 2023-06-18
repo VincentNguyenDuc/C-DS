@@ -1,4 +1,4 @@
-#include "../include/QueueADT.h"
+#include "../Include/QueueADT.h"
 #include <stdlib.h>
 
 Queue* queue_init(void (*free_function)(void *)) {
@@ -10,3 +10,4 @@ Queue* queue_init(void (*free_function)(void *)) {
     queue->rear = 0;
     return queue;
 }
+
