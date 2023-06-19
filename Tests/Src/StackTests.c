@@ -23,22 +23,17 @@ void generate_stack() {
 /**
  * A simple test 
 */
-void stack_simple_test() {
+void stack_test() {
+    // peek
+    TEST_ASSERT_EQUAL_INT8(60, *((int *)stack_peek(stack_ptr)));
+
+    // contain
+    TEST_ASSERT_EQUAL_INT8(0, stack_contain(stack_ptr, generate_int_pointer(100), compare_int_pointers));
+    TEST_ASSERT_NOT_EQUAL_INT8(0, stack_contain(stack_ptr, generate_int_pointer(30), compare_int_pointers));
+
+    // length/push/pop
     int length = stack_get_length(stack_ptr);
     for (int i = 0; i < length; i++){
-        int value = *((int *)stack_pop(stack_ptr));
-        TEST_ASSERT_EQUAL_INT8(value, (length - i) * 10);
-    }
-}
-
-/**
- * A complex test
- */
-void stack_complex_test()
-{
-    int length = stack_get_length(stack_ptr);
-    for (int i = 0; i < length; i++)
-    {
         int value = *((int *)stack_pop(stack_ptr));
         TEST_ASSERT_EQUAL_INT8(value, (length - i) * 10);
     }
@@ -57,7 +52,6 @@ void tearDown(void)
 int main(void)
 {
     UNITY_BEGIN();
-    RUN_TEST(stack_simple_test);
-    RUN_TEST(stack_complex_test);
+    RUN_TEST(stack_test);
     return UNITY_END();
 }

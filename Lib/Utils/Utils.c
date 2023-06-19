@@ -10,3 +10,11 @@ int *generate_int_pointer(int integer)
     *newInt = integer;
     return newInt;
 }
+
+/**
+ * Compare 2 int pointers
+*/
+int compare_int_pointers(const void *a, const void *b)
+{
+    return *(int *)a - *(int *)b;
+}

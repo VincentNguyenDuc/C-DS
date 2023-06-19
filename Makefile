@@ -13,27 +13,34 @@ else
 	TARGET_EXTENSION=out
 endif
 
-# TESTS DIRECTORIES
+# LIB DIRECTORIES
 UNITY_DIR=./Lib/UnityTest/unity.c
 UTILS_DIR=./Lib/Utils/Utils.c
+
+# TESTS DIRECTORIES
 TEST_DIR=./Tests/Src
 
 # DATA STRUCTURES DIRECTORIES
 DS_DIR=./Src/DataStructures/Src
 
-# DEFAULT DIRECTORIES
+# DEFAULT
 DEFAULT=${UNITY_DIR} ${UTILS_DIR}
 
 # STACK
 test_stack:
-		gcc -o TestStack ${DEFAULT} ${TEST_DIR}/StackTests.c ${DS_DIR}/Stack.c 
-		./TestStack
+		gcc -o TestStack.${TARGET_EXTENSION} ${DEFAULT} ${TEST_DIR}/StackTests.c ${DS_DIR}/Stack.c 
+		./TestStack.${TARGET_EXTENSION}
 
 # QUEUE
 test_queue:
-		gcc -o TestQueue ${DEFAULT} ${TEST_DIR}/QueueTests.c ${DS_DIR}/Queue.c
-		./TestQueue
+		gcc -o TestQueue.${TARGET_EXTENSION} ${DEFAULT} ${TEST_DIR}/QueueTests.c ${DS_DIR}/Queue.c
+		./TestQueue.${TARGET_EXTENSION}
+
+# ALL
+all:	
+		make test_stack
+		make test_queue
 
 # CLEAN
 clean:
-		${CLEANUP} TestStack
+		${CLEANUP} *.${TARGET_EXTENSION}
