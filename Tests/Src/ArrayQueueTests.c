@@ -11,7 +11,7 @@ ArrayQueue *queue_ptr;
 /**
  * Generate a queue for testing
  */
-ArrayQueue *generate_queue()
+void generate_queue()
 {
     queue_ptr = queue_init(free);
     queue_append(queue_ptr, generate_int_pointer(10));

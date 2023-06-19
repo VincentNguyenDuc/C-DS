@@ -63,7 +63,7 @@ void* stack_peek(const ArrayStack* stack_pointer) {
  */
 short stack_contain(const ArrayStack* stack_pointer, const void* item, int (*comp)(const void*, const void*)) {
     for (int i = 0; i <= stack_pointer->top; i++) {
-        if (comp(stack_pointer->memory[i], item) == 0) {
+        if (comp(stack_pointer->memory[i], item) != 0) {
             return 1;
         }
     }

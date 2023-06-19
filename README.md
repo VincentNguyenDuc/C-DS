@@ -11,20 +11,20 @@ A Data Structures and Algorithms Library in C
    - Array Queue
    - Linked Queue
    - Circular Queue
-3. Vector
-4. Set
+3. Set
    - Array Set
    - Bit-vector Set
-5. List
+4. List
+   - Array List
    - Sorted List
    - Linked List
-6. Hash Table
+5. Hash Table
    - Open Addressing
    - Separate Chaining
-7. Tree
+6. Tree
    - Binary Tree
    - Binary Search Tree
-8. Heap
+7. Heap
 
 ## Algorithms
 
