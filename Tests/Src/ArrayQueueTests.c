@@ -1,17 +1,17 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "../Include/QueueTests.h"
-#include "../../Src/DataStructures/Include/QueueADT.h"
+#include "../Include/ArrayQueueTests.h"
+#include "../../Src/DataStructures/Include/ArrayQueue.h"
 #include "../../Lib/UnityTest/unity.h"
 #include "../../Lib/Utils/Utils.h"
 
-// A queue for testing
-Queue *queue_ptr;
+// A queue for testing 
+ArrayQueue *queue_ptr;
 
 /**
  * Generate a queue for testing
  */
-Queue *generate_queue()
+void generate_queue()
 {
     queue_ptr = queue_init(free);
     queue_append(queue_ptr, generate_int_pointer(10));
@@ -25,7 +25,7 @@ Queue *generate_queue()
 /**
  * A simple test
  */
-void queue_test()
+void array_queue_test()
 {
     // length
     int length = queue_get_length(queue_ptr);
@@ -64,6 +64,6 @@ void tearDown(void)
 int main(void)
 {
     UNITY_BEGIN();
-    RUN_TEST(queue_test);
+    RUN_TEST(array_queue_test);
     return UNITY_END();
 }

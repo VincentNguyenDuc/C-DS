@@ -1,13 +1,13 @@
-#include "../Include/QueueADT.h"
+#include "../Include/ArrayQueue.h"
 #include <stdlib.h>
 #include <string.h>
 
 /**
  * Initialization
  */
-Queue *queue_init(void (*free_function)(void *))
+ArrayQueue* queue_init(void (*free_function)(void *))
 {
-    Queue *queue = (Queue *)malloc(sizeof(*queue));
+    ArrayQueue *queue = (ArrayQueue *)malloc(sizeof(*queue));
     queue->free_function = free_function;
     queue->allocated = 10;
     queue->memory = (void **)malloc(sizeof(void *) * queue->allocated);
@@ -19,7 +19,7 @@ Queue *queue_init(void (*free_function)(void *))
 /**
  * Serve the element at the front
  */
-void *queue_serve(Queue *queue_pointer)
+void *queue_serve(ArrayQueue *queue_pointer)
 {
     return queue_pointer->memory[queue_pointer->front++];
 }
@@ -27,7 +27,7 @@ void *queue_serve(Queue *queue_pointer)
 /**
  * Append an element to the rear
  */
-void queue_append(Queue *queue_pointer, void *data)
+void queue_append(ArrayQueue *queue_pointer, void *data)
 {
     // Resize the queue
     if (queue_pointer->allocated == queue_pointer->rear)
@@ -50,14 +50,14 @@ void queue_append(Queue *queue_pointer, void *data)
 void queue_destroy(void *queue_pointer)
 {
     queue_clear(queue_pointer);
-    free(((Queue *)queue_pointer)->memory);
+    free(((ArrayQueue *)queue_pointer)->memory);
     free(queue_pointer);
 }
 
 /**
  * Clear all elements within the queue
  */
-void queue_clear(Queue *queue_pointer) 
+void queue_clear(ArrayQueue *queue_pointer) 
 {
     for (int i = queue_pointer->front; i < queue_pointer->rear; i++) {
         queue_pointer->free_function(queue_pointer->memory[i]);
@@ -68,7 +68,7 @@ void queue_clear(Queue *queue_pointer)
 /**
  * Check if queue is empty
  */
-short queue_is_empty(const Queue *queue_pointer)
+short queue_is_empty(const ArrayQueue *queue_pointer)
 {
     return (short) (queue_pointer->front == queue_pointer->rear);
 }
@@ -76,7 +76,7 @@ short queue_is_empty(const Queue *queue_pointer)
 /**
  * Get the length of a queue
  */
-int queue_get_length(const Queue *queue_pointer)
+int queue_get_length(const ArrayQueue *queue_pointer)
 {
     return queue_pointer->rear - queue_pointer->front;
 }
@@ -84,7 +84,7 @@ int queue_get_length(const Queue *queue_pointer)
 /**
  * Peek at the element at the front
  */
-void *queue_peek(const Queue *queue_pointer)
+void *queue_peek(const ArrayQueue *queue_pointer)
 {
     return queue_pointer->memory[queue_pointer->front];
 }

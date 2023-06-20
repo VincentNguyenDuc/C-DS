@@ -1,11 +1,11 @@
-#include "../Include/StackTests.h"
-#include "../../Src/DataStructures/Include/StackADT.h"
+#include "../Include/ArrayStackTests.h"
+#include "../../Src/DataStructures/Include/ArrayStack.h"
 #include "../../Lib/UnityTest/unity.h"
 #include "../../Lib/Utils/Utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-Stack* stack_ptr;
+ArrayStack* stack_ptr;
 
 /**
  * Generate a stack for testing
@@ -23,7 +23,7 @@ void generate_stack() {
 /**
  * A simple test 
 */
-void stack_test() {
+void array_stack_test() {
     // peek
     TEST_ASSERT_EQUAL_INT8(60, *((int *)stack_peek(stack_ptr)));
 
@@ -52,6 +52,6 @@ void tearDown(void)
 int main(void)
 {
     UNITY_BEGIN();
-    RUN_TEST(stack_test);
+    RUN_TEST(array_stack_test);
     return UNITY_END();
 }

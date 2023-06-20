@@ -15,6 +15,7 @@ A Data Structures and Algorithms Library in C
    - Array Set
    - Bit-vector Set
 4. List
+   - Array List
    - Sorted List
    - Linked List
 5. Hash Table

@@ -27,20 +27,26 @@ DS_DIR=./Src/DataStructures/Src
 DEFAULT=${UNITY_DIR} ${UTILS_DIR}
 
 # STACK
-test_stack:
-		gcc -o TestStack.${TARGET_EXTENSION} ${DEFAULT} ${TEST_DIR}/StackTests.c ${DS_DIR}/Stack.c 
-		./TestStack.${TARGET_EXTENSION}
+test_array_stack:
+		gcc -o TestArrayStack.${TARGET_EXTENSION} ${DEFAULT} ${TEST_DIR}/ArrayStackTests.c ${DS_DIR}/ArrayStack.c
+		./TestArrayStack.${TARGET_EXTENSION}
 
 # QUEUE
-test_queue:
-		gcc -o TestQueue.${TARGET_EXTENSION} ${DEFAULT} ${TEST_DIR}/QueueTests.c ${DS_DIR}/Queue.c
-		./TestQueue.${TARGET_EXTENSION}
+test_array_queue:
+		gcc -o TestArrayQueue.${TARGET_EXTENSION} ${DEFAULT} ${TEST_DIR}/ArrayQueueTests.c ${DS_DIR}/ArrayQueue.c
+		./TestArrayQueue.${TARGET_EXTENSION}
+
+# LIST
+test_array_list:
+		gcc -o TestArrayList.${TARGET_EXTENSION} ${DEFAULT} ${TEST_DIR}/ArrayListTests.c ${DS_DIR}/ArrayList.c
+		./TestArrayList.${TARGET_EXTENSION}
 
 # ALL
 all:	
-		make test_stack
-		make test_queue
+		make test_array_stack
+		make test_array_queue
+		make test_array_list
 
 # CLEAN
-clean:
+clean:	
 		${CLEANUP} *.${TARGET_EXTENSION}

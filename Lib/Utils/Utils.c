@@ -12,9 +12,14 @@ int *generate_int_pointer(int integer)
 }
 
 /**
- * Compare 2 int pointers
+ * Compare 2 int pointers. 
+ * Return 1 if equal, 0 otherwise
 */
 int compare_int_pointers(const void *a, const void *b)
 {
-    return *(int *)a - *(int *)b;
+    int res = *(int *)a - *(int *)b;
+    if (res == 0) {
+        return 1;
+    }
+    return 0;
 }
