@@ -43,17 +43,15 @@ void list_insert_at_index(ArrayList *list_ptr, void *item, int index)
 }
 
 /**
- * Remove and return the element at a given index
+ * Remove the element at a given index
  */
-void *list_del_at_index(ArrayList *list_ptr, int index)
+void list_del_at_index(ArrayList *list_ptr, int index)
 {
-    void *item = list_ptr->array[index];
     list_ptr->free_function(list_ptr->array[index]);
     list_ptr->count--;
     for (int i = index; i < list_ptr->count; i++) {
         list_ptr->array[i] = list_ptr->array[i + 1];
     }
-    return item;
 }
 
 /**
@@ -74,7 +72,6 @@ void list_append(ArrayList *list_ptr, void *item)
 */
 void *list_pop(ArrayList *list_ptr) {
     void *item = list_ptr->array[list_get_length(list_ptr) - 1];
-    list_ptr->free_function(list_ptr->array[list_get_length(list_ptr) - 1]);
     list_ptr->count -= 1;
     return item;
 }

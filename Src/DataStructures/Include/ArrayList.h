@@ -20,7 +20,7 @@ void *list_get_at_index(const ArrayList *list_ptr, int index);
 
 void list_insert_at_index(ArrayList *list_ptr, void *item, int index);
 
-void *list_del_at_index(ArrayList *list_ptr, int index);
+void list_del_at_index(ArrayList *list_ptr, int index);
 
 void list_append(ArrayList *list_ptr, void *item);
 
