@@ -4,14 +4,13 @@
 /**
  * Initialization
  */
-ArrayStack* stack_init(void (*free_function)(void *)) {
+ArrayStack* stack_init() {
     // Allocate space
     ArrayStack* stack_pointer = (ArrayStack*) malloc(sizeof(ArrayStack));
     
     // Initialize struct
-    stack_pointer->free_function = free_function;
-    stack_pointer->allocated = 10;
-    stack_pointer->memory = (void**) malloc(sizeof(void*) * stack_pointer->allocated);
+    stack_pointer->capacity = 10;
+    stack_pointer->array = (void**) malloc(sizeof(void*) * stack_pointer->capacity);
     stack_pointer->top = -1;
     return stack_pointer;
 }
@@ -21,12 +20,12 @@ ArrayStack* stack_init(void (*free_function)(void *)) {
  */
 void stack_push(ArrayStack* stack_pointer, void* data) {
     // Extend the space when the stack is full
-    if (stack_pointer->top == stack_pointer->allocated - 1) {
-        stack_pointer->allocated *= 2;
-        stack_pointer->memory = (void**) realloc(stack_pointer->memory, sizeof(void*) * stack_pointer->allocated);
+    if (stack_pointer->top == stack_pointer->capacity - 1) {
+        stack_pointer->capacity *= 2;
+        stack_pointer->array = (void**) realloc(stack_pointer->array, sizeof(void*) * stack_pointer->capacity);
     }
     // Push the data to the top of the stack
-    stack_pointer->memory[++stack_pointer->top] = data;
+    stack_pointer->array[++stack_pointer->top] = data;
 }
 
 /**
@@ -34,7 +33,7 @@ void stack_push(ArrayStack* stack_pointer, void* data) {
  */
 void* stack_pop(ArrayStack* stack_pointer) {
     // Return the top item, and remove it
-    return stack_pointer->memory[stack_pointer->top--];
+    return stack_pointer->array[stack_pointer->top--];
 }
 
 /**
@@ -55,7 +54,7 @@ int stack_get_length(const ArrayStack* stack_pointer) {
  * Peek the element at the top of the stack
  */
 void* stack_peek(const ArrayStack* stack_pointer) {
-    return stack_pointer->memory[stack_pointer->top];
+    return stack_pointer->array[stack_pointer->top];
 }
 
 /**
@@ -63,7 +62,7 @@ void* stack_peek(const ArrayStack* stack_pointer) {
  */
 short stack_contain(const ArrayStack* stack_pointer, const void* item, int (*comp)(const void*, const void*)) {
     for (int i = 0; i <= stack_pointer->top; i++) {
-        if (comp(stack_pointer->memory[i], item) != 0) {
+        if (comp(stack_pointer->array[i], item) != 0) {
             return 1;
         }
     }
@@ -75,7 +74,7 @@ short stack_contain(const ArrayStack* stack_pointer, const void* item, int (*com
  */
 void stack_clear(ArrayStack* stack_pointer) {
     for (int i = 0; i < stack_get_length(stack_pointer); i++) {
-        stack_pointer->free_function(stack_pointer->memory[i]);
+        free(stack_pointer->array[i]);
     }
     stack_pointer->top = -1;
 }
@@ -85,6 +84,6 @@ void stack_clear(ArrayStack* stack_pointer) {
  */
 void stack_destroy(ArrayStack* stack_pointer) {
     stack_clear(stack_pointer);
-    free(stack_pointer->memory);
+    free(stack_pointer->array);
     free(stack_pointer);
 }

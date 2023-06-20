@@ -5,12 +5,11 @@
 /**
  * Initialization
  */
-ArrayQueue* queue_init(void (*free_function)(void *))
+ArrayQueue* queue_init()
 {
     ArrayQueue *queue = (ArrayQueue *)malloc(sizeof(*queue));
-    queue->free_function = free_function;
-    queue->allocated = 10;
-    queue->memory = (void **)malloc(sizeof(void *) * queue->allocated);
+    queue->capacity = 10;
+    queue->array = (void **)malloc(sizeof(void *) * queue->capacity);
     queue->front = 0;
     queue->rear = 0;
     return queue;
@@ -21,7 +20,7 @@ ArrayQueue* queue_init(void (*free_function)(void *))
  */
 void *queue_serve(ArrayQueue *queue_pointer)
 {
-    return queue_pointer->memory[queue_pointer->front++];
+    return queue_pointer->array[queue_pointer->front++];
 }
 
 /**
@@ -30,18 +29,18 @@ void *queue_serve(ArrayQueue *queue_pointer)
 void queue_append(ArrayQueue *queue_pointer, void *data)
 {
     // Resize the queue
-    if (queue_pointer->allocated == queue_pointer->rear)
+    if (queue_pointer->capacity == queue_pointer->rear)
     {
-        queue_pointer->allocated *= 2;
-        void **temp = (void **)malloc(sizeof(void *) * queue_pointer->allocated);
-        memcpy(temp, queue_pointer->memory + queue_pointer->front, sizeof(void *) * (queue_pointer->rear - queue_pointer->front));
+        queue_pointer->capacity *= 2;
+        void **temp = (void **)malloc(sizeof(void *) * queue_pointer->capacity);
+        memcpy(temp, queue_pointer->array + queue_pointer->front, sizeof(void *) * (queue_pointer->rear - queue_pointer->front));
 
-        free(queue_pointer->memory);
-        queue_pointer->memory = temp;
+        free(queue_pointer->array);
+        queue_pointer->array = temp;
         queue_pointer->rear -= queue_pointer->front;
         queue_pointer->front = 0;
     }
-    queue_pointer->memory[queue_pointer->rear++] = data;
+    queue_pointer->array[queue_pointer->rear++] = data;
 }
 
 /**
@@ -50,7 +49,7 @@ void queue_append(ArrayQueue *queue_pointer, void *data)
 void queue_destroy(void *queue_pointer)
 {
     queue_clear(queue_pointer);
-    free(((ArrayQueue *)queue_pointer)->memory);
+    free(((ArrayQueue *)queue_pointer)->array);
     free(queue_pointer);
 }
 
@@ -60,7 +59,7 @@ void queue_destroy(void *queue_pointer)
 void queue_clear(ArrayQueue *queue_pointer) 
 {
     for (int i = queue_pointer->front; i < queue_pointer->rear; i++) {
-        queue_pointer->free_function(queue_pointer->memory[i]);
+        free(queue_pointer->array[i]);
     }
     queue_pointer->front = queue_pointer->rear = 0;
 }
@@ -86,5 +85,5 @@ int queue_get_length(const ArrayQueue *queue_pointer)
  */
 void *queue_peek(const ArrayQueue *queue_pointer)
 {
-    return queue_pointer->memory[queue_pointer->front];
+    return queue_pointer->array[queue_pointer->front];
 }

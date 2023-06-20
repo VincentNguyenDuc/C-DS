@@ -13,7 +13,7 @@ ArrayList* list_ptr;
  */
 ArrayList* generate_list()
 {
-    list_ptr = list_init(10, free, compare_int_pointers);
+    list_ptr = list_init(10, compare_int_pointers);
     list_append(list_ptr, generate_int_pointer(10));
     list_append(list_ptr, generate_int_pointer(20));
     list_append(list_ptr, generate_int_pointer(30));

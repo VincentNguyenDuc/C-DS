@@ -1,16 +1,14 @@
 struct ArrayQueue 
 {
-    void** memory;
-    int allocated;
+    void** array;
+    int capacity;
     int front;
     int rear;
-
-    void (*free_function)(void*);
 };
 
 typedef struct ArrayQueue ArrayQueue;
 
-ArrayQueue* queue_init(void (*free_function)(void*));
+ArrayQueue* queue_init();
 
 void* queue_serve(ArrayQueue *queue_pointer);
 

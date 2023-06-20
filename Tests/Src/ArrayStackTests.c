@@ -11,7 +11,7 @@ ArrayStack* stack_ptr;
  * Generate a stack for testing
 */
 void generate_stack() {
-    stack_ptr = stack_init(free);
+    stack_ptr = stack_init();
     stack_push(stack_ptr, generate_int_pointer(10));
     stack_push(stack_ptr, generate_int_pointer(20));
     stack_push(stack_ptr, generate_int_pointer(30));

@@ -13,7 +13,7 @@ ArrayQueue *queue_ptr;
  */
 void generate_queue()
 {
-    queue_ptr = queue_init(free);
+    queue_ptr = queue_init();
     queue_append(queue_ptr, generate_int_pointer(10));
     queue_append(queue_ptr, generate_int_pointer(20));
     queue_append(queue_ptr, generate_int_pointer(30));

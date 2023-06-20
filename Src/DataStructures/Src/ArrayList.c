@@ -4,13 +4,12 @@
 /**
  * Initialization
  */
-ArrayList *list_init(int length, void (*free_function)(void *), int (*compare_function)(const void *, const void *))
+ArrayList *list_init(int length, int (*compare_function)(const void *, const void *))
 {
     ArrayList *list_ptr = (ArrayList *)malloc(sizeof(ArrayList));
     list_ptr->array = (void **)malloc(sizeof(void *) * length);
     list_ptr->length = length > 0 ? length : 1;
     list_ptr->count = 0;
-    list_ptr->free_function = free_function;
     list_ptr->compare_function = compare_function;
     return list_ptr;
 }
@@ -47,7 +46,7 @@ void list_insert_at_index(ArrayList *list_ptr, void *item, int index)
  */
 void list_del_at_index(ArrayList *list_ptr, int index)
 {
-    list_ptr->free_function(list_ptr->array[index]);
+    free(list_ptr->array[index]);
     list_ptr->count--;
     for (int i = index; i < list_ptr->count; i++) {
         list_ptr->array[i] = list_ptr->array[i + 1];
@@ -123,7 +122,7 @@ int list_is_empty(const ArrayList *list_ptr) {
 */
 void list_clear(ArrayList *list_ptr) {
     for (int i = 0; i < list_get_length(list_ptr); i++)
-        list_ptr->free_function(list_ptr->array[i]);
+        free(list_ptr->array[i]);
 
     list_ptr->count = 0;
 }

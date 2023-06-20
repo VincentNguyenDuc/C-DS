@@ -8,13 +8,12 @@ struct ArrayList
     int length;
     int count;
 
-    void (*free_function)(void *);
     int (*compare_function)(const void *, const void *);
 };
 
 typedef struct ArrayList ArrayList;
 
-ArrayList *list_init(int length, void (*free_function)(void *), int (*compare_function)(const void *, const void *));
+ArrayList *list_init(int length, int (*compare_function)(const void *, const void *));
 
 void *list_get_at_index(const ArrayList *list_ptr, int index);
 

@@ -1,15 +1,13 @@
 struct ArrayStack
 {
-    void** memory;
-    int allocated;
+    void** array;
+    int capacity;
     int top;
-
-    void (*free_function)(void*);
 };
 
 typedef struct ArrayStack ArrayStack;
 
-ArrayStack* stack_init(void (*free_function)(void *item));
+ArrayStack* stack_init();
 
 void stack_push(ArrayStack* stack_pointer, void* data);
 
