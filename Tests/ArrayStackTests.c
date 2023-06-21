@@ -1,7 +1,6 @@
-#include "../Include/ArrayStackTests.h"
-#include "../../Src/DataStructures/Include/ArrayStack.h"
-#include "../../Lib/UnityTest/unity.h"
-#include "../../Lib/Utils/Utils.h"
+#include "../Src/DataStructures/Include/ArrayStack.h"
+#include "../Lib/UnityTest/unity.h"
+#include "../Lib/Utils/Utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -20,20 +19,19 @@ void generate_stack() {
     stack_push(stack_ptr, generate_int_pointer(60));
 }
 
-/**
- * A simple test 
-*/
-void array_stack_test() {
-    // peek
+void test_peek() {
     TEST_ASSERT_EQUAL_INT8(60, *((int *)stack_peek(stack_ptr)));
+}
 
-    // contain
+void test_contain() {
     TEST_ASSERT_EQUAL_INT8(0, stack_contain(stack_ptr, generate_int_pointer(100), compare_int_pointers));
     TEST_ASSERT_NOT_EQUAL_INT8(0, stack_contain(stack_ptr, generate_int_pointer(30), compare_int_pointers));
+}
 
-    // length/push/pop
+void test_length_push_pop() {
     int length = stack_get_length(stack_ptr);
-    for (int i = 0; i < length; i++){
+    for (int i = 0; i < length; i++)
+    {
         int value = *((int *)stack_pop(stack_ptr));
         TEST_ASSERT_EQUAL_INT8(value, (length - i) * 10);
     }
@@ -52,6 +50,8 @@ void tearDown(void)
 int main(void)
 {
     UNITY_BEGIN();
-    RUN_TEST(array_stack_test);
+    RUN_TEST(test_peek);
+    RUN_TEST(test_contain);
+    RUN_TEST(test_length_push_pop);
     return UNITY_END();
 }

@@ -23,7 +23,7 @@ int set_is_full(const ArraySet *set_ptr);
 
 void set_add(ArraySet *set_ptr, void *item);
 
-void set_remove(ArraySet *set_ptr, void *item);
+void set_remove(ArraySet *set_ptr, const void *item);
 
 ArraySet *set_union(const ArraySet *this_set_ptr, const ArraySet *other_set_ptr);
 
@@ -31,3 +31,4 @@ ArraySet *set_intersection(const ArraySet *this_set_ptr, const ArraySet *other_s
 
 ArraySet *set_difference(const ArraySet *this_set_ptr, const ArraySet *other_set_ptr);
 
+void set_destroy(ArraySet *set_ptr);

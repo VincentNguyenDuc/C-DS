@@ -1,6 +1,5 @@
 #include "../Include/ArraySet.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * Create and return a pointer to the array set
@@ -64,11 +63,11 @@ int set_is_full(const ArraySet *set_ptr) {
 /**
  * Add an item into the set
 */
-void add(ArraySet *set_ptr, void *item) {
-    if (set_contain(set_ptr, item) != 0) {
+void set_add(ArraySet *set_ptr, void *item) {
+    if (!set_contain(set_ptr, item)) {
         if (set_is_full(set_ptr)) {
-            perror("The set is full!");
-            exit(EXIT_FAILURE);
+            set_ptr->capacity *= 2;
+            set_ptr->array = (void **)realloc(set_ptr->array, sizeof(void *) * set_ptr->capacity);
         } else {
             set_ptr->array[set_ptr->count] = item;
             set_ptr->count += 1;
@@ -79,16 +78,14 @@ void add(ArraySet *set_ptr, void *item) {
 /**
  * Remove an item from the set
 */
-void remove(ArraySet *set_ptr, void *item) {
+void set_remove(ArraySet *set_ptr, const void *item) {
     for (int i = 0; i < set_ptr->count; i++) {
         if (set_ptr->compare_function(set_ptr->array[i], item) != 0) {
             set_ptr->array[i] = set_ptr->array[set_ptr->count - 1];
             set_ptr->count -= 1;
-            return;
+            break;
         }
     }
-    perror("The given item is not in the set");
-    exit(EXIT_FAILURE);
 }
 
 /**
@@ -143,3 +140,11 @@ ArraySet *set_difference(const ArraySet *this_set_ptr, const ArraySet *other_set
     return result_set;
 }
 
+/**
+ * Free all space
+*/
+void set_destroy(ArraySet *set_ptr) {
+    set_clear(set_ptr);
+    free(set_ptr->array);
+    free(set_ptr);
+}
