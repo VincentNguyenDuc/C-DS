@@ -1,5 +1,6 @@
 #include "./Utils.h"
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * Generate int pointer from an int value
